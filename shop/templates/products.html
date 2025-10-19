@@ -1,0 +1,58 @@
+{% extends './layout.html' %}
+{% load static %}
+
+{% block styles %}<link rel="stylesheet" href="{% static 'shop/css/products.css' %}">{% endblock %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+    <div class="container controls-container">
+        <div class="categories-container">
+            {% for category in categories %}
+                <button class="category-btn btn" data-category={{ category.id }}>{{category.title}}</button>
+            {% endfor %}
+        </div>
+        <a class="create-btn btn" href="{% url 'create' %}">
+            Create
+        </a>
+    </div>
+    <div class="container products-container"></div>
+    <template id="product-template">
+        <div class="product">
+            <div class="image-container"></div>
+            <div class="product-info">
+                <div class="product-widgets">
+                    <div class="availability">
+                        Stock
+                    </div>
+                    <button class="widget-btn">
+                        <img class="widget-icon" src="{% static 'shop/images/hurt.svg' %}"></img>
+                    </button>
+                </div>
+                <p class="product-name"></p>
+                <div class="product-specs">
+                    Specs TODO
+                </div>
+            </div>
+            <div class="functional-product-block">
+                <p class="product-price"></p>
+                <div class="card-buttons">
+                    <a class="product-btn details-btn">
+                        View details
+                    </a>
+                    <a class="product-btn update-btn">
+                        Update
+                    </a>
+                    <a class="product-btn delete-btn">
+                        Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </template>
+{% endblock %}
+
+{% block scripts %}
+    {{ products|json_script:"products_json" }}
+    <script src="{% static 'shop/js/products.js' %}"></script>
+{% endblock %}

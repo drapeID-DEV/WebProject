@@ -1,0 +1,18 @@
+{% extends './layout.html' %}
+{% load static %}
+
+{% block styles %}<link rel="stylesheet" href="{% static 'shop/css/forms.css' %}">{% endblock %}
+
+{% block title %}Delete{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h1>Remove product</h1>
+        <form class="functional-form" method="post">
+            {% csrf_token %}
+            <p class="info-text">Delete this product: <span class="product">{{ object }}[{{ object.id }}]</span>?</p>
+            {{ form }}
+            <button class="form-btn delete-btn" type="submit">Delete</button>
+        </form>
+    </div>
+{% endblock %}
