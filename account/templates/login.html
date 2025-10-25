@@ -1,0 +1,18 @@
+{% extends './layout.html' %}
+{% load static %}
+
+{% block styles %}<link rel="stylesheet" href="{% static 'account/css/forms.css' %}">{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h1 class="form-title">Login</h1>
+        <form class="functional-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <a class="register-link" href="register">Don't have an account?</a>
+            <button class="form-btn" type="submit">Login</button>
+        </form>
+    </div>
+{% endblock %}
