@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from account.forms import UserLoginForm, UserRefistrationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def user_profile(request):
     return render(request, "profile.html")
@@ -14,7 +14,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect("profile/")
+                    return redirect("/account/profile")
                 else:
                     message = "Account is disabled"
                     return render(request, "authInfo.html", {'message': message})
@@ -28,6 +28,10 @@ def user_login(request):
             'form': form
         }
         return render(request, 'login.html', context)
+
+def user_logout(request):
+    logout(request)
+    return redirect("/products")
 
 def user_reg(request):
     if request.method == "POST":

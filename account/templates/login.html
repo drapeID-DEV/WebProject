@@ -11,7 +11,7 @@
         <form class="functional-form" method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <a class="register-link" href="register">Don't have an account?</a>
+            <a class="register-link" href="/account/register">Don't have an account?</a>
             <button class="form-btn" type="submit">Login</button>
         </form>
     </div>
