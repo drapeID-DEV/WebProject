@@ -1,0 +1,10 @@
+{% extends './layout.html' %}
+
+{% block title %}Activate profile{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>{{ user.username }}, please activate your account. To activate go to this link:</h1>
+        <p>http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}</p>
+    </div>
+{% endblock %}

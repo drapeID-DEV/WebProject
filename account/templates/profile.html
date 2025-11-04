@@ -1,10 +1,23 @@
 {% extends './layout.html' %}
+{% load static %}
+
+{% block styles %}<link rel="stylesheet" href="{% static 'account/css/profile.css' %}">{% endblock %}
 
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-    <div>
-        <h1>Welcome to profile {{ user.username }}</h1>
-        <a href="/account/logout">Log Out</a>
+    <div class="container">
+        <div class="profile-container">
+            <h1>Welcome to profile {{ user.username }}</h1>
+            <div class="profile-info">
+                {% if user.first_name %}
+                    <p>Name: {{ user.first_name }}</p>
+                {% else %}
+                    <p>Name: Not provided</p>
+                {% endif %}
+                <p>Email: {{ user.email }}</p>
+            </div>
+            <a class="log-out-btn" href="/account/logout">Log Out</a>
+        </div>
     </div>
 {% endblock %}

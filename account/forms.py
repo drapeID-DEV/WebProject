@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import TextInput, PasswordInput
 
-class UserRefistrationForm(forms.ModelForm):
+class UserRegistrationForm(forms.ModelForm):
     password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
 
     class Meta:
