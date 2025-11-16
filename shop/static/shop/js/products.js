@@ -20,6 +20,7 @@ function renderProducts(productsToRender) {
         productClone.querySelector(".details-btn").setAttribute("href", `/products/${product.id}`);
         productClone.querySelector(".update-btn").setAttribute("href", `/products/update/${product.id}`);
         productClone.querySelector(".delete-btn").setAttribute("href", `/products/delete/${product.id}`);
+        productClone.querySelector(".add-btn").setAttribute("href", `/cart/add/${product.id}/`);
         productsContainer.appendChild(productClone);
     })
 }

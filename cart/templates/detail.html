@@ -1,0 +1,51 @@
+{% extends './layout.html' %}
+{% load static %}
+
+{% block styles %}<link rel="stylesheet" href="{% static 'cart/css/cart.css' %}">{% endblock %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+    <div class="container products-container">
+        {% for item in cart %} 
+            <div class="product">
+                <div class="image-container">{{ item.product }} photo</div>
+                <div class="product-info">
+                    <div class="product-widgets">
+                        <div class="availability">
+                            Stock
+                        </div>
+                        <button class="widget-btn">
+                            <img class="widget-icon" src="{% static 'shop/images/hurt.svg' %}"></img>
+                        </button>
+                    </div>
+                    <p class="product-name">{{ item.product.name }}</p>
+                    <div class="product-qty">
+                        <p>
+                            Quantity: {{ item.quantity }}
+                            <div class="qty-control">
+                                <a href="{% url 'cart_add' item.product.id %}" class="add-qty">
+                                    +
+                                </a>
+                                <a href="{% url 'cart_remove' item.product.id %}" class="remove-qty">
+                                    -
+                                </a>
+                            </div>
+                        </p>
+                        <p>
+                            Total: {{ item.total_price }}₴
+                        </p>
+                    </div>
+                </div>
+                <div class="functional-product-block">
+                    <p class="product-price">Price: {{ item.price }}₴</p>
+                    <div class="card-buttons">
+                        <a class="product-btn details-btn" href="{% url 'product-detail' item.product.id %}">
+                            View details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
